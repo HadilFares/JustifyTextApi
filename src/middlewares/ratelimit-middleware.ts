@@ -1,18 +1,17 @@
 import type { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
 import User from "../models/User";
-import { ITokenRequest } from "../type";
+import { ITokenRequest } from "../token-request-type";
 
-const WORDS_PER_DAY_LIMIT = 50;
+const WORDS_PER_DAY_LIMIT = 80000;
 
 export const rateLimitByEmail = async (
   req: ITokenRequest,
   res: Response,
   next: NextFunction
 ) => {
-  const today = new Date().toISOString().split("T")[0]; // Get current date (YYYY-MM-DD)
+  const today = new Date().toISOString().split("T")[0];
   console.log("today", today);
-  const { email } = req.user;
+  const { email } = req?.user;
 
   try {
     // Find the user by email
@@ -51,8 +50,6 @@ export const rateLimitByEmail = async (
       user.wordAccount = RemainingWords;
       user.lastJustifyDate = new Date().toISOString().split("T")[0];
     }
-
-    // Proceed to the next middleware
     await user.save();
     next();
   } catch (error) {

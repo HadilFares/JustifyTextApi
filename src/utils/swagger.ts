@@ -1,4 +1,3 @@
-import { justifyRouter } from "./../routes/apijustify-route";
 import swaggerJsdoc from "swagger-jsdoc";
 import "dotenv/config";
 

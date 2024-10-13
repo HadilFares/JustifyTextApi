@@ -2,10 +2,8 @@ require("dotenv").config();
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-// Load environment variables from .env file
 dotenv.config();
 
-// Access the MongoDB URI from the environment variables
 const mongoUri = process.env.DB_STRING;
 
 const connectToDatabase = async () => {

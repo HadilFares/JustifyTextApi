@@ -1,6 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { ITokenRequest } from "../type";
+import { ITokenRequest } from "../token-request-type";
+import User from "../models/User";
 
 export const validateToken = (
   req: ITokenRequest,
@@ -10,17 +11,16 @@ export const validateToken = (
   const authHeader = req.headers.authorization;
   const secretKey = process.env.SECRET_KEY;
   if (authHeader) {
-    const token = authHeader.split(" ")[1]; // Bearer <token>
-
-    jwt.verify(token, secretKey, (err, payload) => {
-      //console.log(payload);
+    const token = authHeader?.startsWith("Bearer ")
+      ? authHeader.split(" ")[1]
+      : "";
+    jwt.verify(token, secretKey, async (err, payload) => {
       if (err) {
         return res.status(403).json({
           success: false,
           message: "Invalid token",
         });
       } else {
-        console.log("payload", payload); // Log the payload to check its structure
         req.user = payload as { email: string };
         /* return res.status(200).json({
           success: true,

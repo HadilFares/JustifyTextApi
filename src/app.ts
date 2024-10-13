@@ -1,4 +1,4 @@
-import { tokenRouter } from "./routes/token-route";
+import { tokenRouter } from "./routes/auth-route";
 import express from "express";
 import cors from "cors";
 import connectToDatabase from "./db-server";
@@ -6,7 +6,7 @@ import { justifyRouter } from "./routes/apijustify-route";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./utils/swagger";
 
-const app = express();
+export const app = express();
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(express.json());
 app.use(express.text());

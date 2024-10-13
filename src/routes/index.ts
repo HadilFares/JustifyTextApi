@@ -1,2 +1,2 @@
 export { justifyRouter } from "./apijustify-route";
-export { tokenRouter } from "./token-route";
+export { tokenRouter } from "./auth-route";
