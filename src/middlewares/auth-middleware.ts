@@ -21,8 +21,7 @@ export const validateToken = (
         });
       } else {
         console.log("payload", payload); // Log the payload to check its structure
-        //req.body.email = payload; // Assuming payload contains 'email'
-        req.user = payload as string;
+        req.user = payload as { email: string };
         /* return res.status(200).json({
           success: true,
           message: "token",

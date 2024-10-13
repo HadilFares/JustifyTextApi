@@ -1,18 +1,23 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
-// Raw document interface. Contains the data type as it will be stored
-// in MongoDB. So you can ObjectId, Buffer, and other custom primitive data types.
-// But no Mongoose document arrays or subdocuments.
-interface IUser {
-  email: string;
-  wordcount: number;
-  accesdate: Date;
-}
+// User interface extending Mongoose Document
 
-// Schema
-const userSchema = new Schema<IUser>({
-  email: { type: String, required: true },
-  wordcount: Number || 0,
-  accesdate: Date,
+const userSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  wordAccount: {
+    type: Number,
+    default: 50,
+  },
+  lastJustifyDate: {
+    type: String,
+    required: false,
+  },
 });
-export const User = model<IUser>("Movies", userSchema);
+
+const User = mongoose.model("User", userSchema);
+
+export default User;
