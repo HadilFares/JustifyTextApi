@@ -1,5 +1,5 @@
 import request from "supertest";
-import { app } from "../app";
+import { app } from "../index";
 import jwt from "jsonwebtoken";
 import User from "../models/User";
 
