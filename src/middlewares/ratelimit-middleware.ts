@@ -2,7 +2,6 @@ import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/User";
 import { ITokenRequest } from "../type";
-// Make sure this points to where your user model is defined
 
 const WORDS_PER_DAY_LIMIT = 50;
 

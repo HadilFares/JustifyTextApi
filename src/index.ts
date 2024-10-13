@@ -3,11 +3,11 @@ import express from "express";
 import cors from "cors";
 import connectToDatabase from "./db-server";
 import { justifyRouter } from "./routes/apijustify-route";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./utils/swagger";
 
 const app = express();
-app.get("/user", (req, res) => {
-  res.send("You are on user route!");
-});
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(express.json());
 app.use(express.text());
 app.use(cors());
