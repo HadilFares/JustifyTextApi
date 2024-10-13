@@ -1,7 +1,2 @@
-import { justifyRouter } from "./apijustify-route";
-import { tokenRouter } from "./token-route";
-
-export default {
-  tokenRouter,
-  justifyRouter,
-};
+export { justifyRouter } from "./apijustify-route";
+export { tokenRouter } from "./token-route";

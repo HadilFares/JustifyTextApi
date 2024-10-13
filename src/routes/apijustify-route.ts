@@ -1,7 +1,6 @@
 import { justifyTextHandler } from "./../controllers/apijustify-controller";
 import { Router } from "express";
-import { rateLimitByEmail } from "./../middlewares/ratelimit-middleware";
-import { validateToken } from "../middlewares/auth-middleware";
+import { validateToken, rateLimitByEmail } from "../middlewares";
 
 export const justifyRouter = Router();
 

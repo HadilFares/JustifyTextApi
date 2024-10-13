@@ -25,7 +25,7 @@ export const rateLimitByEmail = async (
     }
 
     // Count the number of words in the request body
-    const words = req.body.split(" ").length;
+    const words = req.body.split(" ").filter(Boolean).length;
     console.log("words", words);
     if (words > WORDS_PER_DAY_LIMIT) {
       return res.status(402).json({
@@ -39,9 +39,8 @@ export const rateLimitByEmail = async (
       // Update the user's word count
       user.wordAccount = WORDS_PER_DAY_LIMIT - words;
       user.lastJustifyDate = new Date().toISOString().split("T")[0];
-      await user.save();
-    }
-    if (user.lastJustifyDate === today) {
+      //await user.save();
+    } else {
       const RemainingWords = user.wordAccount - words;
 
       if (RemainingWords < 0) {
@@ -50,12 +49,12 @@ export const rateLimitByEmail = async (
           message: "Word limit exceeded for the day. Please upgrade your plan.",
         });
       }
-      user.wordAccount - words;
+      user.wordAccount = RemainingWords;
       user.lastJustifyDate = new Date().toISOString().split("T")[0];
-      await user.save();
     }
 
     // Proceed to the next middleware
+    await user.save();
     next();
   } catch (error) {
     return res.status(500).json({ error: "Server error" });

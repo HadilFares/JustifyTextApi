@@ -8,8 +8,6 @@ dotenv.config();
 // Access the MongoDB URI from the environment variables
 const mongoUri = process.env.DB_STRING;
 
-console.log(mongoUri);
-
 const connectToDatabase = async () => {
   try {
     if (!mongoUri) {

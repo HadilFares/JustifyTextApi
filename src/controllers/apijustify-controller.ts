@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-export const justifyText = (text: string, lineLength: number = 80): string => {
+const justifyText = (text: string, lineLength: number = 80): string => {
   if (typeof text !== "string") {
     throw new Error("Invalid input, expected a string");
   }
