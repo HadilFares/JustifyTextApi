@@ -16,9 +16,9 @@ This project implements and deploys a REST API that justifies a given text. Just
 - **npm**
 - **TypeScript**
 - **MongoDB Atlas**
-- **Swagger-ui-express**: v5.0.1 
+- **Swagger-ui-express**: v5.0.1
   
-- ## Rate Limiting Logic
+## Rate Limiting Logic
 - **Daily Word Limit**: Each user can justify up to **80,000 words per day**.
 - **Word Count Calculation**: The number of words in each request is calculated and deducted from the user's daily limit.
 - **Date Check**: If the current date is different from the last justification date, the word limit resets to **80,000 words**.
